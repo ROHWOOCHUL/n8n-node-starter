@@ -32,7 +32,7 @@
 		"strict": true,
 		"credentials": [],
 		"nodes": [
-			"dist/nodes/PlusNode/PlusNode.node.js"
+			"dist/nodes/Example/PlusNode/PlusNode.node.js"
 		]
 	},
 	"devDependencies": {
