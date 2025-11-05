@@ -1,5 +1,5 @@
 {
-	"name": "murava-custom-node",
+	"name": "n8n-nodes-custom-node",
 	"version": "0.1.1",
 	"description": "murava cnode starter",
 	"license": "MIT",
