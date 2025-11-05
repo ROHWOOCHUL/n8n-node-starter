@@ -1,6 +1,6 @@
 {
 	"name": "murava-custom-node",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "murava cnode starter",
 	"license": "MIT",
 	"homepage": "",
@@ -30,8 +30,7 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"strict": true,
-		"credentials": [
-		],
+		"credentials": [],
 		"nodes": [
 			"dist/nodes/PlusNode/PlusNode.node.js"
 		]
