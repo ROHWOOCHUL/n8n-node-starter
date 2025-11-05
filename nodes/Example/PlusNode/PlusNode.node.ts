@@ -6,30 +6,40 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 
-export class Example implements INodeType {
+export class PlusNode implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Example',
-		name: 'example',
+		displayName: 'PlusNode',
+		name: 'plusNode',
 		icon: { light: 'file:example.svg', dark: 'file:example.dark.svg' },
 		group: ['input'],
 		version: 1,
 		description: 'Basic Example Node',
 		defaults: {
-			name: 'Example',
+			name: 'Plus Node',
 		},
+		//어떤 인풋을 왼쪽에서 받을지
 		inputs: [NodeConnectionTypes.Main],
+		//어떤 아웃풋을 오른쪽으로 넣어줄 것인지
 		outputs: [NodeConnectionTypes.Main],
 		usableAsTool: true,
 		properties: [
 			// Node properties which the user gets displayed and
 			// can change on the node.
 			{
-				displayName: 'My String',
-				name: 'myString',
-				type: 'string',
+				displayName: 'Number1',
+				name: 'number1',
+				type: 'number',
 				default: '',
-				placeholder: 'Placeholder value',
-				description: 'The description text',
+				placeholder: '값 입력해주세요.',
+				description: '첫 번째 숫자',
+			},
+			{
+				displayName: 'Number2',
+				name: 'number2',
+				type: 'number',
+				default: '',
+				placeholder: '값 입력해주세요.',
+				description: '두 번째 숫자',
 			},
 		],
 	};
@@ -42,17 +52,19 @@ export class Example implements INodeType {
 		const items = this.getInputData();
 
 		let item: INodeExecutionData;
-		let myString: string;
+		let number1: number;
+		let number2: number;
 
 		// Iterates over all input items and add the key "myString" with the
 		// value the parameter "myString" resolves to.
 		// (This could be a different value for each item in case it contains an expression)
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			try {
-				myString = this.getNodeParameter('myString', itemIndex, '') as string;
+				number1 = this.getNodeParameter('number1', itemIndex, 0) as number;
+				number2 = this.getNodeParameter('number2', itemIndex, 0) as number;
 				item = items[itemIndex];
 
-				item.json.myString = myString;
+				item.json.sum = number1 + number2;
 			} catch (error) {
 				// This node should never fail but we want to showcase how
 				// to handle errors.
